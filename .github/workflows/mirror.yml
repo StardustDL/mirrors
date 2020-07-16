@@ -1,0 +1,43 @@
+name: Mirror
+
+on:
+  push:
+  repository_dispatch:
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  deepcard:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Client
+      uses: docker/build-push-action@v1
+      with:
+        username: StardustDL
+        password: ${{ secrets.PA_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: docker.pkg.github.com/stardustdl/deepcard/client
+        tags: 1.0.0
+        dockerfile: ./deepcard/Dockerfile-client
+    - name: Server
+      uses: docker/build-push-action@v1
+      with:
+        username: StardustDL
+        password: ${{ secrets.PA_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: docker.pkg.github.com/stardustdl/deepcard/server
+        tags: 1.0.0
+        dockerfile: ./deepcard/Dockerfile-server
+    - name: API
+      uses: docker/build-push-action@v1
+      with:
+        username: StardustDL
+        password: ${{ secrets.PA_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: docker.pkg.github.com/stardustdl/deepcard/api
+        tags: 1.0.0
+        dockerfile: ./deepcard/Dockerfile-api
