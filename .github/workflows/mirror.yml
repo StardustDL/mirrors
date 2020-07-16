@@ -20,7 +20,7 @@ jobs:
         username: StardustDL
         password: ${{ secrets.PA_TOKEN }}
         registry: docker.pkg.github.com
-        repository: docker.pkg.github.com/stardustdl/deepcard/client
+        repository: stardustdl/deepcard/client
         tags: 1.0.0
         dockerfile: ./deepcard/Dockerfile-client
     - name: Server
@@ -29,7 +29,7 @@ jobs:
         username: StardustDL
         password: ${{ secrets.PA_TOKEN }}
         registry: docker.pkg.github.com
-        repository: docker.pkg.github.com/stardustdl/deepcard/server
+        repository: stardustdl/deepcard/server
         tags: 1.0.0
         dockerfile: ./deepcard/Dockerfile-server
     - name: API
@@ -38,6 +38,6 @@ jobs:
         username: StardustDL
         password: ${{ secrets.PA_TOKEN }}
         registry: docker.pkg.github.com
-        repository: docker.pkg.github.com/stardustdl/deepcard/api
+        repository: stardustdl/deepcard/api
         tags: 1.0.0
         dockerfile: ./deepcard/Dockerfile-api
