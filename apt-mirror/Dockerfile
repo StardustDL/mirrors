@@ -1,0 +1,1 @@
+FROM seterrychen/apt-mirror-http-server:latest
