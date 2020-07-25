@@ -23,8 +23,7 @@ jobs:
         repository: stardustdl/apt-mirror-http-server
         tags: latest
         dockerfile: ./apt-mirror/Dockerfile
-  deepcard:
-    if: ${{ false }}
+  judge0:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -32,27 +31,23 @@ jobs:
     - name: Client
       uses: docker/build-push-action@v1
       with:
-        username: StardustDL
-        password: ${{ secrets.PA_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: stardustdl/deepcard/client
-        tags: 1.0.0
-        dockerfile: ./deepcard/Dockerfile-client
-    - name: Server
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: registry.cn-hangzhou.aliyuncs.com
+        repository: stardustdl/judge0
+        tags: "1.9.0"
+        dockerfile: ./judge0/Dockerfile
+  minio:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Client
       uses: docker/build-push-action@v1
       with:
-        username: StardustDL
-        password: ${{ secrets.PA_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: stardustdl/deepcard/server
-        tags: 1.0.0
-        dockerfile: ./deepcard/Dockerfile-server
-    - name: API
-      uses: docker/build-push-action@v1
-      with:
-        username: StardustDL
-        password: ${{ secrets.PA_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: stardustdl/deepcard/api
-        tags: 1.0.0
-        dockerfile: ./deepcard/Dockerfile-api
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: registry.cn-hangzhou.aliyuncs.com
+        repository: stardustdl/minio
+        tags: latest
+        dockerfile: ./minio/Dockerfile
